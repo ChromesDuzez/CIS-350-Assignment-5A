@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Through
+  - Scoreboard
+  - GameOverText
+  - GameManager
   layers:
   - Default
   - TransparentFX

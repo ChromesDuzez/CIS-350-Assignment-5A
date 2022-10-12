@@ -1,6 +1,13 @@
-﻿using System.Collections;
+﻿/*
+ * Zach Wilson
+ * Assignment 5A
+ * This is a script that controlles the player character and I edited it to update the animator with "velocityY"
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPlatformerController : PhysicsObject {
 
@@ -9,6 +16,12 @@ public class PlayerPlatformerController : PhysicsObject {
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+
+    public gameManager gameManagerScript;
+    private void Start()
+    {
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+    }
 
     // Use this for initialization
     void Awake () 
@@ -21,7 +34,10 @@ public class PlayerPlatformerController : PhysicsObject {
     {
         Vector2 move = Vector2.zero;
 
-        move.x = Input.GetAxis ("Horizontal");
+        if (!gameManagerScript.GameOver)
+        {
+            move.x = Input.GetAxis("Horizontal");
+        }
 
         if (Input.GetButtonDown ("Jump") && grounded) {
             velocity.y = jumpTakeOffSpeed;
@@ -32,7 +48,12 @@ public class PlayerPlatformerController : PhysicsObject {
             }
         }
 
-        if(move.x > 0.01f)
+        if(Input.GetKeyDown(KeyCode.R) && gameManagerScript.GameOver)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (move.x > 0.01f)
         {
             if(spriteRenderer.flipX == true)
             {
