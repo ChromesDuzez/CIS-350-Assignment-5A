@@ -51,6 +51,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Plants
+    uniqueID: 2168399631
+    locked: 0
   - name: Foreground
     uniqueID: 1632157909
     locked: 0
